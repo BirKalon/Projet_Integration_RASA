@@ -1,0 +1,63 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- thank_you:
+    use_entities: true
+- request_picture:
+    use_entities: true
+- request_animal_picture:
+    use_entities: true
+entities:
+- animals
+slots:
+  animals:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_picture:
+  - image: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/40458dca-4360-4b4b-8aca-ba831f8db36d/dd1hwc8-432db9c0-1770-43e7-9d65-9ae337e57291.png/v1/fit/w_800,h_1149,q_70,strp/horse_on_the_run_by_pegaite_dd1hwc8-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTE0OSIsInBhdGgiOiJcL2ZcLzQwNDU4ZGNhLTQzNjAtNGI0Yi04YWNhLWJhODMxZjhkYjM2ZFwvZGQxaHdjOC00MzJkYjljMC0xNzcwLTQzZTctOWQ2NS05YWUzMzdlNTcyOTEucG5nIiwid2lkdGgiOiI8PTgwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.Np3Zj-hww1-gMEmWAogsBtbc6zJjw_H4wb__cxdEM8U
+    text: 'Here is another one '
+  - text: sorry i dont have one
+  utter_specific_picture:
+  - text: 'Let me see ... for {animals}, I found this :'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_welcome:
+  - text: you are welcome
+  - text: you're welcome
+  - text: you are very welcome
+actions:
+- action_get_animal_picture
+forms: {}
+e2e_actions: []
